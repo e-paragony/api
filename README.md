@@ -19,17 +19,17 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 Pobranie listy paragonów
 
 ```shell
-curl -H 'Authorization: Bearer __API_TOKEN__' https://PREFIX.fakturownia.pl/invoices.json
+curl https://PREFIX.fakturownia.pl/invoices.json -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
 ```shell
-curl -H 'Authorization: Bearer __API_TOKEN__' 'https://PREFIX.fakturownia.pl/invoices.json?kind=receipt'
+curl 'https://PREFIX.fakturownia.pl/invoices.json?kind=receipt' -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
 Podbranie szczegółowych danych jednego paragonu
 
 ```shell
-curl -H 'Authorization: Bearer __API_TOKEN__' https://PREFIX.fakturownia.pl/invoices/376751870.json
+curl https://PREFIX.fakturownia.pl/invoices/376751870.json -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
 Dodanie nowego paragonu
@@ -60,7 +60,7 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
 po stworzeniu paragonu zostanie wypisany `_ID_` i aby wydrukować e-paragon wywołujemu:
 
 ```shell
-curl -H 'Authorization: Bearer __API_TOKEN__' 'https://PREFIX.fakturownia.pl/invoices/fiscal_print?fiskator_name=_PRINTER_ID_&id=_ID_&mode=e-receipt'
+curl 'https://PREFIX.fakturownia.pl/invoices/fiscal_print?fiskator_name=_PRINTER_ID_&id=_ID_&mode=e-receipt' -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
 natomiast `_PRINTER_ID_` musimy pobrać ze strony: https://PREFIX.fakturownia.pl/printers.json
