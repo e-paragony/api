@@ -113,3 +113,4 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
 3. do ustalenia pola w KSEF buyer_company i currency
 4. jak przez api pobrać URL e-paragonu
 5. zmienić wydruk paragonu na POST (z GET)
+6. w druku fiskalnym powinna być możliwość niepodawania drukarki (i wtedy jest domyślna)
