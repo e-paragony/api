@@ -65,7 +65,7 @@ curl -H 'Authorization: Bearer __API_TOKEN__' 'https://PREFIX.fakturownia.pl/inv
 
 natomiast `_PRINTER_ID_` musimy pobrać ze strony: https://PREFIX.fakturownia.pl/printers.json
 
-a mode może być:
+mode może przyjmować wartości:
 - `e-receipt` - e-paragon
 - `print` - wydruk paragonu papierowego
 
