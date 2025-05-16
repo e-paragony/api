@@ -95,12 +95,19 @@ Klient może to włączyć na swoim koncie w Fakturowni - jak tylko `e_receipt_v
 https://pomoc.fakturownia.pl/179433234-Automatyczne-wysylanie-e-paragonow-e-mailem
 
 
-### linki do e-paragony
+### linki do e-paragonu
 
-Link do podglądu e-paragonu e_receipt_view_url zwracany jest przy pobieraniu dokumentu curl https://PREFIX.fakturownia.pl/invoices/376751870.json -H 'Authorization: Bearer __API_TOKEN__', jeśli do danego dokumentu powstał już e-paragon. Natomiast np. w przypadku przerwy w dostawie prądu / internetu na drukarce fiskalnej, e-paragon może powstać z opóźnieniem od czasu wystawienia paragonu. Dlatego sugerowanym sposobem uzyskania linku do e-paragonu są webhooki.
-Webhook invoice:update, po uzupełnieniu linku do e-paragonu przy danym Paragonie w Fakturowni, zwróci e_receipt_view_url. Webhooki można skonfigurować w Ustawienia -> Ustawienia konta -> Integracja, lub można zrobić to przez API:
-https://pomoc.fakturownia.pl/1239014-Integracja-danych-z-Fakturowni-za-pomoca-webhookow
-https://github.com/fakturownia/api?tab=readme-ov-file#webhooks
+Link do podglądu e-paragonu e_receipt_view_url zwracany jest przy pobieraniu dokumentu
+
+```
+curl https://PREFIX.fakturownia.pl/invoices/376751870.json -H 'Authorization: Bearer __API_TOKEN__'
+```
+
+jeśli do danego dokumentu powstał już e-paragon. Natomiast np. w przypadku przerwy w dostawie prądu / internetu na drukarce fiskalnej, e-paragon może powstać z opóźnieniem od czasu wystawienia paragonu. Dlatego sugerowanym sposobem uzyskania linku do e-paragonu są webhooki.
+Webhook `invoice:update`, po uzupełnieniu linku do e-paragonu przy danym Paragonie w Fakturowni, zwróci `e_receipt_view_url`. Webhooki można skonfigurować w `Ustawienia -> Ustawienia konta -> Integracja`, lub można zrobić to przez API:
+
+- https://pomoc.fakturownia.pl/1239014-Integracja-danych-z-Fakturowni-za-pomoca-webhookow
+- https://github.com/fakturownia/api?tab=readme-ov-file#webhooks
 
 # TODO
 - zmienić wydruk paragonu na POST (z GET)
