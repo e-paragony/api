@@ -37,7 +37,6 @@ Dodanie nowego paragonu
 ```shell
 curl https://PREFIX.fakturownia.pl/invoices.json \
   -H 'Authorization: Bearer __API_TOKEN__' \
-  -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
     "invoice": {
