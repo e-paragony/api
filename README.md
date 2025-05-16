@@ -10,7 +10,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 
 ## API token
 
-`API_TOKEN` token trzeba pobrać z ustawień aplikacji ("Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API")
+`API_TOKEN` token trzeba pobrać z ustawień aplikacj: `Ustawienia -> Ustawienia konta -> Integracja -> Kod autoryzacyjny API`
 
 <a name="examples"></a>
 ## Przykłady
