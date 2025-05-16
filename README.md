@@ -110,5 +110,5 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
 
 2. jak automatycznie wysłać e-mailem klientowi link do e-paragonu
 3. do ustalenia pola w KSEF buyer_company i currency
-4. ja przez api pobrać URL e-paragonu
+4. jak przez api pobrać URL e-paragonu
 5. zmienić wydruk paragonu na POST (z GET)
