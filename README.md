@@ -1,4 +1,4 @@
-# API do wystawianie e-paragonów w systemie Paragony.pl oraz Fakturownia.pl
+# API do wystawiania e-paragonów w systemie Paragony.pl oraz Fakturownia.pl
 
 Opis jak zintegrować własną aplikację lub serwis z e-paragonami za pomocą [Paragony.pl](https://paragony.pl) lub [Fakturownia.pl](https://fakturownia.pl)
 
