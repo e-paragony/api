@@ -16,7 +16,7 @@ Działające przykłady wywołania API Fakturowni znajdują się też w w syste
 ## Przykłady
 
 <a name="f1"></a>
-Pobranie listy paragonów
+### Pobranie listy paragonów
 
 ```shell
 curl https://PREFIX.fakturownia.pl/invoices.json -H 'Authorization: Bearer __API_TOKEN__'
@@ -26,13 +26,15 @@ curl https://PREFIX.fakturownia.pl/invoices.json -H 'Authorization: Bearer __API
 curl 'https://PREFIX.fakturownia.pl/invoices.json?kind=receipt' -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
-Podbranie szczegółowych danych jednego paragonu
+### Podbranie szczegółowych danych jednego paragonu
 
 ```shell
 curl https://PREFIX.fakturownia.pl/invoices/376751870.json -H 'Authorization: Bearer __API_TOKEN__'
 ```
 
-Dodanie nowego paragonu
+tu w polu `e_receipt_view_url` mamy link do E-Paragonu (jeśli został utworzony)
+
+### Dodanie nowego paragonu
 
 ```shell
 curl https://PREFIX.fakturownia.pl/invoices.json \
@@ -74,43 +76,32 @@ Aby wydrukować paragon lub e-paragon trzeba też wcześniej podłączyć do s
 Gdy drukarka będzie skonfigurowana wtedy po utworzeniu e-paragonu zostanie dla niego utworzony specjalny adres typu:
 
 
-https://PREFIX.paragony.pl/iB000002Ef4cSVbaNyYupWFpwe33DDW [TODO: opisać jak to przez API pobrać]
+https://PREFIX.paragony.pl/iB000002Ef4cSVbaNyYupWFpwe33DDW (ten url jest dostępny w podglądzie paragonu w polu `e_receipt_view_url`)
 
 
 i ten url może zostać przekazany klientowi (jest to poprawny E-Paragon)
 
 
-## TODO do opisania / poprawienia
-1. do ustalenia parametr jak od razu wydrukować e-paragon
+## FAQ
 
-proponuję aby działało (i aby szło na drukarkę domyślną):
-```shell
-curl https://PREFIX.fakturownia.pl/invoices.json \
-  -H 'Authorization: Bearer __API_TOKEN__' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "invoice": {
-      "kind":"receipt",
-      "number": null,
-      "sell_date": "2025-05-16",
-      "issue_date": "2025-05-16",
-      "payment_to": "2025-05-23",
-      "seller_name": "Seller1 SA",
-      "seller_tax_no": "6272616681",
-      "buyer_name": "Client1 SA",
-      "buyer_tax_no": "6272616682",
-      "positions":[
-        {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
-        {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":2}
-      ]
-    },
-    "after_action": "e-receipt", # lub "print"
-    # "after_action: { mode: "e-receipt", printer_id: 123} # jeśli chcemy na niedomyślną drukarkę
-  }'
-```
+### jak od razu wydrukować e-paragon
 
-2. jak przez API wysłać e-mailem klientowi link do e-paragonu https://pomoc.fakturownia.pl/179433234-Automatyczne-wysylanie-e-paragonow-e-mailem
-3. do ustalenia pola w KSEF buyer_company i currency
-4. jak przez api pobrać URL e-paragonu
-5. zmienić wydruk paragonu na POST (z GET)
-6. w druku fiskalnym powinna być możliwość niepodawania drukarki (i wtedy jest domyślna)
+Klient może to włączyć na swoim koncie w Fakturowni - każdy Paragon wystawiony przez API może być automatycznie zlecany do fiskalizacji:
+https://pomoc.fakturownia.pl/179236547-Automatyczna-fiskalizacja-paragonow-po-utworzeniu-przez-API
+
+###  jak automatycznie wysłać e-mailem klientowi link do e-paragonu
+
+Klient może to włączyć na swoim koncie w Fakturowni - jak tylko `e_receipt_view_url` zostanie uzupełnione, Fakturownia wyśle e-paragon mailem
+https://pomoc.fakturownia.pl/179433234-Automatyczne-wysylanie-e-paragonow-e-mailem
+
+
+### linki do e-paragony
+
+Link do podglądu e-paragonu e_receipt_view_url zwracany jest przy pobieraniu dokumentu curl https://PREFIX.fakturownia.pl/invoices/376751870.json -H 'Authorization: Bearer __API_TOKEN__', jeśli do danego dokumentu powstał już e-paragon. Natomiast np. w przypadku przerwy w dostawie prądu / internetu na drukarce fiskalnej, e-paragon może powstać z opóźnieniem od czasu wystawienia paragonu. Dlatego sugerowanym sposobem uzyskania linku do e-paragonu są webhooki.
+Webhook invoice:update, po uzupełnieniu linku do e-paragonu przy danym Paragonie w Fakturowni, zwróci e_receipt_view_url. Webhooki można skonfigurować w Ustawienia -> Ustawienia konta -> Integracja, lub można zrobić to przez API:
+https://pomoc.fakturownia.pl/1239014-Integracja-danych-z-Fakturowni-za-pomoca-webhookow
+https://github.com/fakturownia/api?tab=readme-ov-file#webhooks
+
+# TODO
+- zmienić wydruk paragonu na POST (z GET)
+- w druku fiskalnym powinna być możliwość niepodawania drukarki (i wtedy jest domyślna)
