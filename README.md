@@ -81,8 +81,34 @@ i ten url może zostać przekazany klientowi (jest to poprawny E-Paragon)
 
 
 ## TODO do opisania / poprawienia
-- jak automatycznie wysłać e-mailem klientowi link do e-paragony
-- do ustalenia parametr jak od razu wydrukować e-paragon (lub ew za pomocą kolejnego requesta)
-- do ustalenia pola w KSEF buyer_company i currency
-- ja przez api pobrać URL e-paragonu
-- zmienić wydruk paragonu na POST (z GET)
+1. do ustalenia parametr jak od razu wydrukować e-paragon (lub ew za pomocą kolejnego requesta)
+
+proponuję aby działało:
+```shell
+curl https://PREFIX.fakturownia.pl/invoices.json \
+  -H 'Authorization: Bearer __API_TOKEN__' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "invoice": {
+      "action": "e-receipt" | "print"
+      "kind":"receipt",
+      "number": null,
+      "sell_date": "2025-05-16",
+      "issue_date": "2025-05-16",
+      "payment_to": "2025-05-23",
+      "seller_name": "Seller1 SA",
+      "seller_tax_no": "6272616681",
+      "buyer_name": "Client1 SA",
+      "buyer_tax_no": "6272616682",
+      "positions":[
+        {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
+        {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":2}
+      ]
+    }
+  }'
+```
+
+2. jak automatycznie wysłać e-mailem klientowi link do e-paragonu
+3. do ustalenia pola w KSEF buyer_company i currency
+4. ja przez api pobrać URL e-paragonu
+5. zmienić wydruk paragonu na POST (z GET)
