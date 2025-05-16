@@ -83,14 +83,13 @@ i ten url może zostać przekazany klientowi (jest to poprawny E-Paragon)
 ## TODO do opisania / poprawienia
 1. do ustalenia parametr jak od razu wydrukować e-paragon
 
-proponuję aby działało:
+proponuję aby działało (i aby szło na drukarkę domyślną):
 ```shell
 curl https://PREFIX.fakturownia.pl/invoices.json \
   -H 'Authorization: Bearer __API_TOKEN__' \
   -H 'Content-Type: application/json' \
   -d '{
     "invoice": {
-      "action": "e-receipt", # lub "print"
       "kind":"receipt",
       "number": null,
       "sell_date": "2025-05-16",
@@ -104,7 +103,9 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
         {"name":"Produkt A1", "tax":23, "total_price_gross":10.23, "quantity":1},
         {"name":"Produkt A2", "tax":0, "total_price_gross":50, "quantity":2}
       ]
-    }
+    },
+    "after_action": "e-receipt", # lub "print"
+    # "after_action: { mode: "e-receipt", printer_id: 123} # jeśli chcemy na niedomyślną drukarkę
   }'
 ```
 
