@@ -57,16 +57,32 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
   }'
 ```
 
-Aby wydrukować paragon lub e-paragon trzeba podłączyć do systeu Drukarkę Fiskalną. Tu jest opis jak to zrobić: https://pomoc.fakturownia.pl/45289196-Paragony-pl-2-5-1-modul-do-wydrukow-fiskalnych-instalacja-i-czynnosci-poinstalacyjne
+po stworzeniu paragonu zostanie wypisany `_ID_` i aby wydrukować e-paragon wywołujemu:
+
+```shell
+curl -H 'Authorization: Bearer __API_TOKEN__' 'https://PREFIX.fakturownia.pl/invoices/fiscal_print?fiskator_name=_PRINTER_ID_&id=_ID_&mode=e-receipt'
+```
+
+natomiast `_PRINTER_ID_` musimy pobrać ze strony: https://PREFIX.fakturownia.pl/printers.json
+
+a mode może być:
+- `e-receipt` - e-paragon
+- `print` - wydruk paragonu papierowego
+
+Aby wydrukować paragon lub e-paragon trzeba też wcześniej podłączyć do systeu Drukarkę Fiskalną. Tu jest opis jak to zrobić: https://pomoc.fakturownia.pl/45289196-Paragony-pl-2-5-1-modul-do-wydrukow-fiskalnych-instalacja-i-czynnosci-poinstalacyjne
 
 Gdy drukarka będzie skonfigurowana wtedy po utworzeniu e-paragonu zostanie dla niego utworzony specjalny adres typu:
 
-https://PREFIX.paragony.pl/iB000002Ef4cSVbaNyYupWFpwe33DDW
+
+https://PREFIX.paragony.pl/iB000002Ef4cSVbaNyYupWFpwe33DDW [TODO: opisać jak to przez API pobrać]
+
 
 i ten url może zostać przekazany klientowi (jest to poprawny E-Paragon)
 
 
-## TODO do opisania
-- jak autoamtycznie wysłać e-mailem klientowi link do e-paragony
+## TODO do opisania / poprawienia
+- jak automatycznie wysłać e-mailem klientowi link do e-paragony
 - do ustalenia parametr jak od razu wydrukować e-paragon (lub ew za pomocą kolejnego requesta)
 - do ustalenia pola w KSEF buyer_company i currency
+- ja przez api pobrać URL e-paragonu
+- zmienić wydruk paragonu na POST (z GET)
