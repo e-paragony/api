@@ -108,7 +108,7 @@ curl https://PREFIX.fakturownia.pl/invoices.json \
   }'
 ```
 
-2. jak automatycznie wysłać e-mailem klientowi link do e-paragonu
+2. jak przez API wysłać e-mailem klientowi link do e-paragonu https://pomoc.fakturownia.pl/179433234-Automatyczne-wysylanie-e-paragonow-e-mailem
 3. do ustalenia pola w KSEF buyer_company i currency
 4. jak przez api pobrać URL e-paragonu
 5. zmienić wydruk paragonu na POST (z GET)
